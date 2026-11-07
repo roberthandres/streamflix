@@ -1,0 +1,19 @@
+[
+{
+  "model": "peliculas.pelicula",
+  "pk": 1,
+  "fields": {
+    "titulo": "Interestelar",
+    "descripcion": "Un grupo de exploradores viaja por el espacio buscando un nuevo hogar para la humanidad.",
+    "imagen_url": "",
+    "banner_url": "",
+    "genero": "Ciencia ficción",
+    "tipo": "pelicula",
+    "fecha_lanzamiento": "2014-11-07",
+    "duracion": 169,
+    "calificacion": "8.7",
+    "destacado": true,
+    "fecha_creacion": "2026-11-07T03:46:50.133Z"
+  }
+}
+]

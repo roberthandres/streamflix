@@ -1,0 +1,120 @@
+﻿@'
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<!-- PELICULA DESTACADA -->
+{% if destacada %}
+<section class="hero"
+    {% if destacada.banner_url %}
+    style="background-image: linear-gradient(to right, #141414 15%, transparent 100%), url('{{ destacada.banner_url }}');"
+    {% endif %}>
+
+    <div class="informacion">
+        <span class="etiqueta">PELÍCULA DESTACADA</span>
+
+        <h2>{{ destacada.titulo }}</h2>
+
+        <p>{{ destacada.descripcion }}</p>
+
+        <div class="datos">
+            <span>{{ destacada.genero }}</span>
+            <span>⭐ {{ destacada.calificacion }}</span>
+            <span>{{ destacada.fecha_lanzamiento|date:"Y" }}</span>
+        </div>
+    </div>
+
+</section>
+{% endif %}
+
+
+<!-- CATÁLOGO DE PELÍCULAS -->
+<section class="catalogo" id="peliculas">
+
+    <h2>🎬 Películas populares</h2>
+
+    <div class="contenedor-peliculas">
+
+        {% for pelicula in peliculas %}
+
+        <article class="tarjeta">
+
+            {% if pelicula.imagen_url %}
+                <img src="{{ pelicula.imagen_url }}"
+                     alt="{{ pelicula.titulo }}"
+                     loading="lazy">
+            {% else %}
+                <div class="sin-imagen">
+                    🎬
+                </div>
+            {% endif %}
+
+            <div class="detalle">
+                <h3>{{ pelicula.titulo }}</h3>
+
+                <p>{{ pelicula.genero }}</p>
+
+                <span>⭐ {{ pelicula.calificacion }}</span>
+            </div>
+
+        </article>
+
+        {% empty %}
+
+        <p class="mensaje">
+            Todavía no hay películas registradas.
+        </p>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+<!-- CATÁLOGO DE SERIES -->
+<section class="catalogo" id="peliculas">
+
+    <h2>📺 Series para disfrutar</h2>
+
+    <div class="contenedor-peliculas">
+
+        {% for serie in series %}
+
+        <article class="tarjeta">
+
+            {% if serie.imagen_url %}
+                <img src="{{ serie.imagen_url }}"
+                     alt="{{ serie.titulo }}"
+                     loading="lazy">
+            {% else %}
+                <div class="sin-imagen">
+                    📺
+                </div>
+            {% endif %}
+
+            <div class="detalle">
+                <h3>{{ serie.titulo }}</h3>
+
+                <p>{{ serie.genero }}</p>
+
+                <span>⭐ {{ serie.calificacion }}</span>
+            </div>
+
+        </article>
+
+        {% empty %}
+
+        <p class="mensaje">
+            Todavía no hay series registradas.
+        </p>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}
+'@ | Set-Content -Path templates\inicio.html -Encoding UTF8
+

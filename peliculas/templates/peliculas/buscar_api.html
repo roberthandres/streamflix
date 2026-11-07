@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<div class="contenedor-api">
+
+    <h1>Consultar películas</h1>
+    <p>Busca tus películas favoritas utilizando TMDB.</p>
+
+    <form method="GET" action="{% url 'buscar_api' %}">
+        <input
+            type="text"
+            name="q"
+            placeholder="Escribe el nombre de una película..."
+            value="{{ consulta }}"
+            required
+        >
+
+        <button type="submit">Buscar</button>
+    </form>
+
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+
+    {% if peliculas %}
+        <div class="peliculas-grid">
+
+            {% for pelicula in peliculas %}
+
+                <div class="pelicula-card">
+
+                    {% if pelicula.poster_path %}
+                        <img
+                            src="https://image.tmdb.org/t/p/w500{{ pelicula.poster_path }}"
+                            alt="{{ pelicula.title }}"
+                        >
+                    {% else %}
+                        <div class="sin-imagen">
+                            Sin imagen disponible
+                        </div>
+                    {% endif %}
+
+                    <h3>{{ pelicula.title }}</h3>
+
+                    <p>
+                        {{ pelicula.overview|default:"Sin descripción disponible." }}
+                    </p>
+
+                    <span>
+                        Fecha: {{ pelicula.release_date|default:"No disponible" }}
+                    </span>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% elif consulta and not error %}
+        <p>No se encontraron películas.</p>
+    {% endif %}
+
+</div>
+
+{% endblock %}

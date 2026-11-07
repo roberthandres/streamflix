@@ -1,0 +1,51 @@
+
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<section class="juego-pelicula">
+
+    <div class="tarjeta-juego resultado-juego">
+
+        {% if acierto %}
+
+            <div class="icono-pelicula">🏆</div>
+
+            <h1 class="resultado-correcto">¡FELICIDADES!</h1>
+
+            <p class="mensaje-resultado">
+                {{ resultado }}
+            </p>
+
+            <div class="pelicula-revelada">
+                <span>LA PELÍCULA ERA:</span>
+                <h2>{{ titulo_correcto }}</h2>
+            </div>
+
+        {% else %}
+
+            <div class="icono-pelicula">😅</div>
+
+            <h1 class="resultado-incorrecto">¡CASI LO LOGRAS!</h1>
+
+            <p class="mensaje-resultado">
+                {{ resultado }}
+            </p>
+
+            <p>¡No te rindas! Inténtalo con otra película.</p>
+
+        {% endif %}
+
+        <a href="{% url 'jugar' %}" class="boton-juego">
+            🎬 JUGAR OTRA VEZ
+        </a>
+
+        <a href="/" class="boton-secundario">
+            VOLVER A STREAMFLIX
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

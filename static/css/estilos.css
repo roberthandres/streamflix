@@ -1,0 +1,517 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #141414;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    background: #101010;
+}
+
+.logo {
+    color: #e50914;
+    font-size: 30px;
+}
+
+.menu {
+    display: flex;
+    gap: 25px;
+}
+
+.menu a,
+.usuario a {
+    color: white;
+    text-decoration: none;
+}
+
+.menu a:hover {
+    color: #e50914;
+}
+
+.portada {
+    min-height: 550px;
+    display: flex;
+    align-items: center;
+    padding: 60px;
+    background: linear-gradient(
+        90deg,
+        #141414,
+        #252525
+    );
+}
+
+.informacion {
+    max-width: 600px;
+}
+
+.informacion h2 {
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+
+.informacion p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+button {
+    background: #e50914;
+    color: white;
+    border: none;
+    padding: 14px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* PORTADA DESTACADA */
+
+.hero {
+    min-height: 430px;
+    display: flex;
+    align-items: center;
+    padding: 60px;
+    background-color: #252525;
+    background-size: cover;
+    background-position: center;
+}
+
+.etiqueta {
+    color: #e50914;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.datos {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    color: #ddd;
+}
+
+
+/* CATALOGO */
+
+.catalogo {
+    padding: 35px 5%;
+}
+
+.catalogo h2 {
+    font-size: 25px;
+    margin-bottom: 25px;
+}
+
+.contenedor-peliculas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 22px;
+}
+
+
+/* TARJETAS */
+
+.tarjeta {
+    background: #222;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+
+.tarjeta:hover {
+    transform: scale(1.05);
+}
+
+.tarjeta img,
+.sin-imagen {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.sin-imagen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #333;
+    font-size: 55px;
+}
+
+.detalle {
+    padding: 15px;
+}
+
+.detalle h3 {
+    font-size: 17px;
+    margin-bottom: 8px;
+}
+
+.detalle p {
+    color: #aaa;
+    margin-bottom: 10px;
+}
+
+.detalle span {
+    color: #ffc107;
+}
+
+.mensaje {
+    color: #aaa;
+}
+
+
+/* DISEÑO RESPONSIVE */
+
+@media (max-width: 600px) {
+    .navbar {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 20px;
+        gap: 15px;
+    }
+
+    .menu {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .hero {
+        padding: 30px;
+    }
+
+    .informacion h2 {
+        font-size: 30px;
+    }
+
+    .contenedor-peliculas {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* BUSCADOR TMDB */
+
+.buscador-api {
+    padding: 45px 5%;
+}
+
+.buscador-api h1 {
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+.buscador-api > p {
+    color: #bbb;
+    margin-bottom: 25px;
+}
+
+.buscador-api form {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 35px;
+}
+
+.buscador-api input {
+    width: 350px;
+    padding: 14px;
+    background: #252525;
+    color: white;
+    border: 1px solid #555;
+    border-radius: 5px;
+    outline: none;
+}
+
+.buscador-api h2 {
+    margin-bottom: 25px;
+}
+
+.mensaje-error {
+    color: #ff5555;
+    margin: 20px 0;
+}
+
+.buscador-api .detalle p:last-child {
+    font-size: 13px;
+    line-height: 1.5;
+}
+/* =====================================
+   ANIMACIONES STREAMFLIX
+===================================== */
+
+/* Aparición suave de la página */
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.buscador-api {
+    animation: aparecer 0.8s ease;
+}
+
+/* Animación de las tarjetas */
+.tarjeta {
+    animation: aparecer 0.7s ease both;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.tarjeta:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(229, 9, 20, 0.35);
+    z-index: 2;
+}
+
+/* Zoom de los pósteres */
+.tarjeta img {
+    transition: transform 0.5s ease;
+}
+
+.tarjeta:hover img {
+    transform: scale(1.08);
+}
+
+/* Animación de los títulos */
+.buscador-api h1 {
+    animation: aparecer 1s ease;
+}
+
+/* Botón de búsqueda */
+.buscador-api button {
+    transition: all 0.3s ease;
+}
+
+.buscador-api button:hover {
+    transform: scale(1.06);
+    box-shadow: 0 0 18px rgba(229, 9, 20, 0.6);
+}
+/* =====================================
+   PANTALLA DE CARGA STREAMFLIX
+===================================== */
+
+.pantalla-carga {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 40px;
+    color: white;
+}
+
+.loader-streamflix {
+    width: 65px;
+    height: 65px;
+    border: 5px solid #333;
+    border-top: 5px solid #e50914;
+    border-radius: 50%;
+    animation: girar 1s linear infinite;
+}
+
+@keyframes girar {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.pantalla-carga h2 {
+    color: #e50914;
+    letter-spacing: 5px;
+}
+
+/* =================================
+   JUEGO: ADIVINA LA PELÍCULA
+================================= */
+
+.juego-pelicula {
+    min-height: 75vh;
+    padding: 60px 20px;
+    background: #141414;
+    color: white;
+    text-align: center;
+}
+
+.encabezado-juego {
+    margin-bottom: 35px;
+}
+
+.etiqueta-juego {
+    color: #e50914;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.encabezado-juego h1 {
+    font-size: 38px;
+    margin: 15px 0;
+}
+
+.encabezado-juego p {
+    color: #bbb;
+}
+
+.tarjeta-juego {
+    max-width: 650px;
+    margin: auto;
+    padding: 35px;
+    background: #222;
+    border-radius: 15px;
+    border: 1px solid #444;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
+}
+
+.icono-pelicula {
+    font-size: 65px;
+    margin-bottom: 15px;
+}
+
+.tarjeta-juego h2 {
+    margin-bottom: 10px;
+}
+
+.instruccion {
+    color: #bbb;
+    margin-bottom: 25px;
+}
+
+.pistas {
+    text-align: left;
+    margin: 25px 0;
+}
+
+.pista {
+    background: #303030;
+    padding: 18px;
+    border-left: 4px solid #e50914;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.pista span {
+    color: #e50914;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.pista p {
+    color: white;
+    margin-top: 8px;
+    line-height: 1.5;
+}
+
+.tarjeta-juego form label {
+    display: block;
+    text-align: left;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.tarjeta-juego input {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #555;
+    border-radius: 7px;
+    background: #111;
+    color: white;
+    font-size: 16px;
+    margin-bottom: 18px;
+    box-sizing: border-box;
+}
+
+.boton-juego {
+    display: inline-block;
+    width: 100%;
+    padding: 15px;
+    background: #e50914;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: 0.3s;
+}
+
+.boton-juego:hover {
+    background: #b20710;
+}
+
+.boton-secundario {
+    display: inline-block;
+    margin-top: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.boton-secundario:hover {
+    color: #e50914;
+}
+
+.mensaje-juego {
+    max-width: 600px;
+    margin: auto;
+    padding: 30px;
+    background: #222;
+    border-radius: 12px;
+}
+
+.resultado-correcto {
+    color: #46d369;
+}
+
+.resultado-incorrecto {
+    color: #e50914;
+}
+
+.mensaje-resultado {
+    font-size: 18px;
+    margin: 20px 0;
+}
+
+.pelicula-revelada {
+    background: #303030;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 25px 0;
+}
+
+.pelicula-revelada span {
+    color: #aaa;
+    font-size: 13px;
+    letter-spacing: 2px;
+}
+
+.pelicula-revelada h2 {
+    color: #e50914;
+    margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+    .encabezado-juego h1 {
+        font-size: 27px;
+    }
+
+    .tarjeta-juego {
+        padding: 22px 16px;
+    }
+}

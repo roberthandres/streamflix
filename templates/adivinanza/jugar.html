@@ -1,0 +1,79 @@
+
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<section class="juego-pelicula">
+
+    <div class="encabezado-juego">
+        <span class="etiqueta-juego">STREAMFLIX GAMES</span>
+        <h1>🎬 ¿ADIVINAS LA PELÍCULA?</h1>
+        <p>Demuestra cuánto sabes de cine. ¡Descubre la película secreta!</p>
+    </div>
+
+    {% if error %}
+
+        <div class="mensaje-juego">
+            <h2>⚠️ No hay películas disponibles</h2>
+            <p>{{ error }}</p>
+            <a href="/" class="boton-juego">Volver al inicio</a>
+        </div>
+
+    {% else %}
+
+        <div class="tarjeta-juego">
+
+            <div class="icono-pelicula">🎥</div>
+
+            <h2>¡Tenemos una película secreta!</h2>
+            <p class="instruccion">
+                Lee las siguientes pistas e intenta descubrir su título.
+            </p>
+
+            <div class="pistas">
+                <div class="pista">
+                    <span>🎭 GÉNERO</span>
+                    <p>{{ pista_genero }}</p>
+                </div>
+
+                <div class="pista">
+                    <span>📅 AÑO DE ESTRENO</span>
+                    <p>{{ pista_anio }}</p>
+                </div>
+
+                <div class="pista">
+                    <span>🧩 DESCRIPCIÓN</span>
+                    <p>{{ pista_descripcion }}</p>
+                </div>
+            </div>
+
+            <form method="POST" action="{% url 'comprobar_respuesta' %}">
+                {% csrf_token %}
+
+                <label for="respuesta">¿Cuál es la película?</label>
+
+                <input
+                    type="text"
+                    id="respuesta"
+                    name="respuesta"
+                    placeholder="Escribe el nombre de la película..."
+                    required
+                    autocomplete="off"
+                >
+
+                <button type="submit" class="boton-juego">
+                    COMPROBAR RESPUESTA
+                </button>
+            </form>
+
+            <a href="{% url 'jugar' %}" class="boton-secundario">
+                🔄 Otra película
+            </a>
+
+        </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

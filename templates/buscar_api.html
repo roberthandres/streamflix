@@ -1,0 +1,126 @@
+﻿{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido %}
+
+<section class="buscador-api">
+
+    <!-- Titulo -->
+    <h1>Explorar series</h1>
+
+    <p>Encuentra tus series favoritas utilizando TVmaze API.</p>
+
+    <!-- Formulario de busqueda -->
+    <form method="GET" action="{% url 'buscar_api' %}" id="formulario-busqueda">
+
+        <input
+            type="text"
+            name="q"
+            placeholder="Ejemplo: Breaking Bad, Friends, Dark..."
+            value="{{ nombre }}"
+            required
+        >
+
+        <button type="submit">Buscar</button>
+
+    </form>
+
+    <!-- Mensaje de error -->
+    {% if error %}
+        <p class="mensaje-error">{{ error }}</p>
+    {% endif %}
+
+    <!-- Resultados -->
+    {% if nombre %}
+        <h2>Resultados para: {{ nombre }}</h2>
+    {% endif %}
+
+    <div class="contenedor-peliculas">
+
+        {% for serie in resultados %}
+
+            <article class="tarjeta">
+
+                <!-- Imagen -->
+                {% if serie.image.medium %}
+
+                    <img
+                        src="{{ serie.image.medium }}"
+                        alt="{{ serie.name }}"
+                    >
+
+                {% else %}
+
+                    <div class="sin-imagen">📺</div>
+
+                {% endif %}
+
+                <!-- Informacion -->
+                <div class="detalle">
+
+                    <h3>{{ serie.name }}</h3>
+
+                    <!-- Generos -->
+                    <p>
+                        {% for genero in serie.genres %}
+                            {{ genero }}{% if not forloop.last %}, {% endif %}
+                        {% empty %}
+                            Género no disponible
+                        {% endfor %}
+                    </p>
+
+                    <!-- Calificacion -->
+                    <span>
+                        ⭐ {{ serie.rating.average|default:"Sin calificación" }}
+                    </span>
+
+                    <!-- Descripcion -->
+                    <p>
+                        {{ serie.summary|striptags|truncatewords:25|default:"Sin descripción disponible." }}
+                    </p>
+
+                    <!-- Estado -->
+                    <p>
+                        Estado: {{ serie.status|default:"No disponible" }}
+                    </p>
+
+                </div>
+
+            </article>
+
+        {% empty %}
+
+            {% if nombre and not error %}
+                <p>No encontramos series con ese nombre.</p>
+            {% endif %}
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+<!-- Pantalla de carga -->
+<div id="cargando" class="pantalla-carga" style="display: none;">
+
+    <div class="loader-streamflix"></div>
+
+    <h2>STREAMFLIX</h2>
+
+    <p>Buscando tus series favoritas...</p>
+
+</div>
+
+<!-- Animaciones JavaScript -->
+<script>
+    const formulario = document.getElementById('formulario-busqueda');
+    const cargando = document.getElementById('cargando');
+
+    formulario.addEventListener('submit', function() {
+        cargando.style.display = 'flex';
+    });
+</script>
+
+<script src="{% static 'js/animaciones.js' %}"></script>
+
+{% endblock %}

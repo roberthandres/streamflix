@@ -1,0 +1,42 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>STREAMFLIX</title>
+
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+</head>
+
+<body>
+
+    <!-- BARRA DE NAVEGACIÓN -->
+    <nav class="navbar">
+
+        <a href="/" class="logo">STREAMFLIX</a>
+
+        <div class="menu">
+    <a href="/">Inicio</a>
+    <a href="/#peliculas">Películas</a>
+    <a href="/#series">Series</a>
+    <a href="#">Mi lista</a>
+    <a href="{% url 'buscar_api' %}">Consultar API</a>
+    <a href="{% url 'jugar' %}">🎮 Adivina la película</a>
+</div>
+
+        <div class="usuario">
+            <a href="#">Iniciar sesión</a>
+        </div>
+
+    </nav>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main>
+        {% block contenido %}
+        {% endblock %}
+    </main>
+
+</body>
+</html>
