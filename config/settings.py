@@ -1,4 +1,5 @@
-﻿import os
+﻿
+import os
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -6,17 +7,27 @@ from dotenv import load_dotenv
 Django settings for config project.
 """
 
-# Rutas del proyecto
+# =====================================
+# RUTAS DEL PROYECTO
+# =====================================
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Cargar variables de entorno
+# Cargar variables del archivo .env
 load_dotenv(BASE_DIR / '.env')
 
-# Token API TMDB
-TMDB_BEARER_TOKEN = os.getenv('TMDB_BEARER_TOKEN')
+
+# =====================================
+# CONFIGURACIÓN DE OMDb
+# =====================================
+
+OMDB_API_KEY = os.getenv('OMDB_API_KEY')
 
 
-# ConfiguraciÃ³n principal
+# =====================================
+# CONFIGURACIÓN PRINCIPAL
+# =====================================
+
 SECRET_KEY = 'django-insecure-%id%8(2kp(mc2pw%s*8sgf4(n57g)41#@t9+!dc5=oh)9d+_%y'
 
 DEBUG = True
@@ -24,7 +35,10 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# Aplicaciones
+# =====================================
+# APLICACIONES
+# =====================================
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,7 +55,10 @@ INSTALLED_APPS = [
 ]
 
 
-# Middleware
+# =====================================
+# MIDDLEWARE
+# =====================================
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -56,7 +73,10 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'config.urls'
 
 
-# Plantillas
+# =====================================
+# PLANTILLAS
+# =====================================
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -76,7 +96,10 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
-# Base de datos
+# =====================================
+# BASE DE DATOS POSTGRESQL
+# =====================================
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -88,7 +111,11 @@ DATABASES = {
     }
 }
 
-# ValidaciÃ³n de contraseÃ±as
+
+# =====================================
+# VALIDACIÓN DE CONTRASEÑAS
+# =====================================
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -105,7 +132,10 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Idioma y zona horaria
+# =====================================
+# IDIOMA Y ZONA HORARIA
+# =====================================
+
 LANGUAGE_CODE = 'es-co'
 
 TIME_ZONE = 'America/Bogota'
@@ -115,7 +145,10 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Archivos estÃ¡ticos
+# =====================================
+# ARCHIVOS ESTÁTICOS
+# =====================================
+
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
@@ -123,9 +156,22 @@ STATICFILES_DIRS = [
 ]
 
 
-# ConfiguraciÃ³n de correo
+# =====================================
+# CONFIGURACIÓN DE CORREO
+# =====================================
+
 MAILERS = {
     'default': {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+
+
+# =====================================
+# CLAVE PRIMARIA POR DEFECTO
+# =====================================
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'inicio'
+LOGOUT_REDIRECT_URL = 'inicio'

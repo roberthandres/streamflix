@@ -1,4 +1,5 @@
-﻿{% load static %}
+﻿
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,32 +8,78 @@
 
     <title>STREAMFLIX</title>
 
-    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}?v=20">
 </head>
 
 <body>
 
-    <!-- BARRA DE NAVEGACIÓN -->
     <nav class="navbar">
 
         <a href="/" class="logo">STREAMFLIX</a>
 
         <div class="menu">
-    <a href="/">Inicio</a>
-    <a href="/#peliculas">Películas</a>
-    <a href="/#series">Series</a>
-    <a href="#">Mi lista</a>
-    <a href="{% url 'buscar_api' %}">Consultar API</a>
-    <a href="{% url 'jugar' %}">🎮 Adivina la película</a>
-</div>
+
+            <a href="/">Inicio</a>
+
+            <a href="/#peliculas">Películas</a>
+
+            <a href="/#series">Series</a>
+
+            {% if user.is_authenticated %}
+                <a href="#">Mi lista</a>
+            {% endif %}
+
+            <a href="{% url 'buscar_api' %}">Consultar API</a>
+
+            <a href="{% url 'jugar' %}">
+                🎮 Adivina la película
+            </a>
+
+            {% if perms.peliculas.add_pelicula %}
+                <a href="/admin/">Administración</a>
+            {% endif %}
+
+        </div>
 
         <div class="usuario">
-            <a href="#">Iniciar sesión</a>
+
+            {% if user.is_authenticated %}
+
+                <span>Hola, {{ user.username }}</span>
+
+                <form method="POST" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit">Cerrar sesión</button>
+                </form>
+
+            {% else %}
+
+                <a href="{% url 'login' %}">
+                    Iniciar sesión
+                </a>
+
+                <a href="{% url 'registro' %}">
+                    Registrarse
+                </a>
+
+            {% endif %}
+
         </div>
 
     </nav>
 
-    <!-- CONTENIDO PRINCIPAL -->
+    {% if messages %}
+        <div class="mensajes">
+
+            {% for message in messages %}
+                <p class="{{ message.tags }}">
+                    {{ message }}
+                </p>
+            {% endfor %}
+
+        </div>
+    {% endif %}
+
     <main>
         {% block contenido %}
         {% endblock %}

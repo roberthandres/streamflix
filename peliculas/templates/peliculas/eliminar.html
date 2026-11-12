@@ -1,0 +1,32 @@
+
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<section class="catalogo">
+
+    <h2>Eliminar contenido</h2>
+
+    <div class="formulario-pelicula">
+
+        <h3>¿Estás seguro de eliminar este contenido?</h3>
+
+        <p>
+            Vas a eliminar: <strong>{{ pelicula.titulo }}</strong>
+        </p>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <button type="submit">
+                Sí, eliminar
+            </button>
+
+            <a href="{% url 'inicio' %}">Cancelar</a>
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

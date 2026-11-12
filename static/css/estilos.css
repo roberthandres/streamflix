@@ -173,7 +173,7 @@ button {
 }
 
 
-/* DISE脩O RESPONSIVE */
+/* DISE+鍻 RESPONSIVE */
 
 @media (max-width: 600px) {
     .navbar {
@@ -250,7 +250,7 @@ button {
    ANIMACIONES STREAMFLIX
 ===================================== */
 
-/* Aparici贸n suave de la p谩gina */
+/* Aparici+ suave de la p+韌ina */
 @keyframes aparecer {
     from {
         opacity: 0;
@@ -267,7 +267,7 @@ button {
     animation: aparecer 0.8s ease;
 }
 
-/* Animaci贸n de las tarjetas */
+/* Animaci+ de las tarjetas */
 .tarjeta {
     animation: aparecer 0.7s ease both;
     transition: transform 0.35s ease, box-shadow 0.35s ease;
@@ -281,7 +281,7 @@ button {
     z-index: 2;
 }
 
-/* Zoom de los p贸steres */
+/* Zoom de los p+teres */
 .tarjeta img {
     transition: transform 0.5s ease;
 }
@@ -290,12 +290,12 @@ button {
     transform: scale(1.08);
 }
 
-/* Animaci贸n de los t铆tulos */
+/* Animaci+ de los t+ulos */
 .buscador-api h1 {
     animation: aparecer 1s ease;
 }
 
-/* Bot贸n de b煤squeda */
+/* Bot+ de b+queda */
 .buscador-api button {
     transition: all 0.3s ease;
 }
@@ -339,7 +339,7 @@ button {
 }
 
 /* =================================
-   JUEGO: ADIVINA LA PEL脥CULA
+   JUEGO: ADIVINA LA PEL+霤ULA
 ================================= */
 
 .juego-pelicula {
@@ -513,5 +513,378 @@ button {
 
     .tarjeta-juego {
         padding: 22px 16px;
+    }
+}
+
+
+/* =====================================
+   INICIO DE SESION STREAMFLIX
+===================================== */
+
+body.pagina-login {
+    min-height: 100vh;
+    margin: 0;
+    background:
+        radial-gradient(ellipse at top, #351014 0%, transparent 55%),
+        linear-gradient(135deg, #080808, #171717, #090909);
+    color: white;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+.pagina-login *,
+.pagina-login *::before,
+.pagina-login *::after {
+    box-sizing: border-box;
+}
+
+.pagina-login .login-fondo {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 35px 20px;
+}
+
+.pagina-login .login-logo {
+    display: block;
+    color: #e50914;
+    font-size: 42px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-decoration: none;
+    margin-bottom: 30px;
+}
+
+.pagina-login .login-logo span {
+    color: white;
+}
+
+.pagina-login .contenedor-login {
+    width: 100%;
+    max-width: 440px;
+    padding: 45px 40px;
+    background: #191919;
+    border: 1px solid #383838;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+    animation: aparecer 0.7s ease;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.pagina-login .login-encabezado {
+    margin-bottom: 35px;
+}
+
+.pagina-login .login-etiqueta {
+    color: #e50914;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.pagina-login .login-encabezado h1 {
+    font-size: 32px;
+    margin: 14px 0;
+    color: white;
+}
+
+.pagina-login .login-encabezado p {
+    color: #aaa;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.pagina-login .campo-login {
+    margin-bottom: 23px;
+}
+
+.pagina-login .campo-login label {
+    display: block;
+    margin-bottom: 10px;
+    color: #ddd;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.pagina-login .campo-login input {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #444;
+    border-radius: 8px;
+    background: #111;
+    color: white;
+    font-size: 15px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.pagina-login .campo-login input:focus {
+    border-color: #e50914;
+    box-shadow: 0 0 12px rgba(229, 9, 20, 0.2);
+}
+
+.pagina-login .boton-login {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 16px;
+    margin-top: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #e50914;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.pagina-login .boton-login:hover {
+    background: #b20710;
+    box-shadow: 0 5px 25px rgba(229, 9, 20, 0.3);
+    transform: translateY(-2px);
+}
+
+.pagina-login .login-separador {
+    height: 1px;
+    background: #383838;
+    margin: 30px 0;
+}
+
+.pagina-login .login-registro {
+    text-align: center;
+    color: #aaa;
+    font-size: 14px;
+}
+
+.pagina-login .login-registro a {
+    color: #e50914;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.pagina-login .login-registro a:hover {
+    text-decoration: underline;
+}
+
+.pagina-login .login-volver {
+    display: block;
+    text-align: center;
+    margin-top: 25px;
+    color: #aaa;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.pagina-login .login-volver:hover {
+    color: white;
+}
+
+.pagina-login .login-error {
+    color: #ff7777;
+    font-size: 13px;
+    margin: 8px 0;
+}
+
+.pagina-login .login-pie {
+    color: #666;
+    font-size: 10px;
+    letter-spacing: 3px;
+    margin-top: 30px;
+    text-align: center;
+}
+
+/* =====================================
+   BOTONES DE ADMINISTRACION
+===================================== */
+
+.acciones-admin {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.acciones-admin a {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 13px;
+    background-color: #333;
+    color: white;
+    transition: 0.3s;
+}
+
+.acciones-admin a:hover {
+    background-color: #555;
+}
+
+.acciones-admin a:last-child {
+    background-color: #a32626;
+}
+
+.acciones-admin a:last-child:hover {
+    background-color: #d32f2f;
+}
+
+/* =====================================
+   FORMULARIO DE PELICULAS
+===================================== */
+
+.formulario-pelicula {
+    width: 90%;
+    max-width: 650px;
+    margin: 40px auto;
+    padding: 35px;
+    background: #181818;
+    border: 1px solid #333;
+    border-radius: 14px;
+    color: #fff;
+    box-sizing: border-box;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
+}
+
+.catalogo > h2 {
+    text-align: center;
+    margin-top: 35px;
+    color: #fff;
+}
+
+.formulario-pelicula h3 {
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 30px;
+    color: #e50914;
+}
+
+.formulario-pelicula form p {
+    margin-bottom: 20px;
+}
+
+.formulario-pelicula form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #ddd;
+    font-weight: bold;
+}
+
+.formulario-pelicula input:not([type="checkbox"]),
+.formulario-pelicula textarea,
+.formulario-pelicula select {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: #292929;
+    color: white;
+    border: 1px solid #444;
+    border-radius: 7px;
+    box-sizing: border-box;
+    font-size: 15px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.formulario-pelicula input:focus,
+.formulario-pelicula textarea:focus,
+.formulario-pelicula select:focus {
+    border-color: #e50914;
+    box-shadow: 0 0 5px rgba(229, 9, 20, 0.5);
+}
+
+.formulario-pelicula textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.formulario-pelicula input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #e50914;
+    vertical-align: middle;
+}
+
+.formulario-pelicula button {
+    display: inline-block;
+    padding: 12px 22px;
+    margin-top: 15px;
+    background: #e50914;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.formulario-pelicula button:hover {
+    background: #b80710;
+}
+
+.formulario-pelicula form a {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 12px 22px;
+    background: #383838;
+    color: white;
+    text-decoration: none;
+    border-radius: 7px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.formulario-pelicula form a:hover {
+    background: #555;
+}
+
+.formulario-pelicula .errorlist {
+    color: #ff6464;
+    margin: 5px 0;
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width: 600px) {
+    .formulario-pelicula {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .formulario-pelicula form a {
+        margin: 10px 0 0;
+    }
+}
+
+@media (max-width: 500px) {
+    .pagina-login .contenedor-login {
+        padding: 35px 23px;
+    }
+
+    .pagina-login .login-encabezado h1 {
+        font-size: 27px;
+    }
+
+    .pagina-login .login-logo {
+        font-size: 32px;
     }
 }

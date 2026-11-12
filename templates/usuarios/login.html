@@ -1,0 +1,88 @@
+﻿
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión | STREAMFLIX</title>
+
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}?v=3">
+</head>
+
+<body class="pagina-login">
+
+    <div class="login-fondo">
+
+        <a href="/" class="login-logo">
+            STREAM<span>FLIX</span>
+        </a>
+
+        <div class="contenedor-login">
+
+            <div class="login-encabezado">
+                <span class="login-etiqueta">BIENVENIDO DE NUEVO</span>
+                <h1>Iniciar sesión</h1>
+                <p>Disfruta de tus películas y series favoritas.</p>
+            </div>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                {% if formulario.non_field_errors %}
+                    <div class="login-error">
+                        {{ formulario.non_field_errors }}
+                    </div>
+                {% endif %}
+
+                <div class="campo-login">
+                    <label for="{{ formulario.username.id_for_label }}">
+                        Nombre de usuario
+                    </label>
+
+                    {{ formulario.username }}
+
+                    {% for error in formulario.username.errors %}
+                        <p class="login-error">{{ error }}</p>
+                    {% endfor %}
+                </div>
+
+                <div class="campo-login">
+                    <label for="{{ formulario.password.id_for_label }}">
+                        Contraseña
+                    </label>
+
+                    {{ formulario.password }}
+
+                    {% for error in formulario.password.errors %}
+                        <p class="login-error">{{ error }}</p>
+                    {% endfor %}
+                </div>
+
+                <button type="submit" class="boton-login">
+                    INGRESAR <span>→</span>
+                </button>
+
+            </form>
+
+            <div class="login-separador"></div>
+
+            <p class="login-registro">
+                ¿No tienes una cuenta?
+                <a href="{% url 'registro' %}">Crear cuenta</a>
+            </p>
+
+            <a href="/" class="login-volver">
+                ← Volver al inicio
+            </a>
+
+        </div>
+
+        <p class="login-pie">
+            STREAMFLIX · TU MUNDO DE ENTRETENIMIENTO
+        </p>
+
+    </div>
+
+</body>
+</html>

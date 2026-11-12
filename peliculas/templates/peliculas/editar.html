@@ -1,0 +1,28 @@
+
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<section class="catalogo">
+
+    <h2>Editar contenido</h2>
+
+    <div class="formulario-pelicula">
+
+        <h3>{{ pelicula.titulo }}</h3>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            {{ formulario.as_p }}
+
+            <button type="submit">Guardar cambios</button>
+
+            <a href="{% url 'inicio' %}">Cancelar</a>
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}
